@@ -7,8 +7,8 @@ export class EllipseShape extends BaseShape<Konva.Ellipse> {
             x: width / 2,
             y: height / 2,
             radius: {
-                x: (width - (2 * strokeWidth)) / 2,
-                y: (height - (2 * strokeWidth)) / 2
+                x: (width - strokeWidth) / 2,
+                y: (height - strokeWidth) / 2
             },
             fill: "slateblue",
             stroke: "black",
@@ -17,15 +17,15 @@ export class EllipseShape extends BaseShape<Konva.Ellipse> {
     }
 
     public getLeft(): number {
-        return this.instance.x() - this.instance.radiusX();
+        return this.instance.x() - this.instance.radius().x;
     }
 
     public getTop(): number {
-        return this.instance.y() - this.instance.radiusY();
+        return this.instance.y() - this.instance.radius().y;
     }
 
     public move(x: number, y: number): void {
-        this.instance.y(y + this.instance.radiusY());
-        this.instance.x(x + this.instance.radiusX());
+        this.instance.y(y + this.instance.radius().y + strokeWidth / 2);
+        this.instance.x(x + this.instance.radius().x + strokeWidth / 2);
     }
 }
